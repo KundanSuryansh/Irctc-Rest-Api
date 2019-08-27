@@ -39,4 +39,20 @@ public class User implements Serializable {
     public Set<Ticket> getTicketSet() {
         return ticketSet;
     }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEnquiresList(List<Enquires> enquiresList) {
+        this.enquiresList = enquiresList;
+    }
+
+    public void setTicketSet(Set<Ticket> ticketSet) {
+        this.ticketSet = ticketSet;
+    }
 }

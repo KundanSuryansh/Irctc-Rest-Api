@@ -84,4 +84,12 @@ public class Passengers implements Serializable {
                 ", seatNo=" + seatNo +
                 '}';
     }
+
+    public void setPassengersId(long passengersId) {
+        this.passengersId = passengersId;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 }

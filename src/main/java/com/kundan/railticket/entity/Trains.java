@@ -1,9 +1,6 @@
 package com.kundan.railticket.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,14 +15,16 @@ public class Trains implements Serializable {
     private String name;
     private  int totalSeats;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "train")
     List<Enquires> enquires;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "train")
     List<Ticket> tickets;
 
     @OneToMany(mappedBy = "train")
-    List<TrainStation> trainStations;
+    List<TrainStation> trainstations;
 
     Trains(){}
     public Trains(int trainNo, String name, int totalSeats) {
@@ -55,7 +54,7 @@ public class Trains implements Serializable {
     }
 
     public List<TrainStation> getTrainstations() {
-        return trainStations;
+        return trainstations;
     }
 
     public void setTrainNo(int trainNo) {
@@ -68,5 +67,17 @@ public class Trains implements Serializable {
 
     public void setTotalSeats(int totalSeats) {
         this.totalSeats = totalSeats;
+    }
+
+    public void setEnquires(List<Enquires> enquires) {
+        this.enquires = enquires;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public void setTrainstations(List<TrainStation> trainStations) {
+        this.trainstations = trainStations;
     }
 }

@@ -52,4 +52,28 @@ public class Enquires implements Serializable {
     public Timestamp getTimestamp() {
         return timestamp;
     }
+
+    public void setEnquiriesId(long enquiriesId) {
+        EnquiriesId = enquiriesId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTrain(Trains train) {
+        this.train = train;
+    }
+
+    public void setFromStation(String fromStation) {
+        this.fromStation = fromStation;
+    }
+
+    public void setToStation(String toStation) {
+        this.toStation = toStation;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
 }

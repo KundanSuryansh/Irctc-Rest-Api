@@ -42,13 +42,9 @@ public class TrainController {
         return trainRepository.findAll();
     }
     @PutMapping("/train/{trainNo}")
-    public List<Trains> UpdateTrainById(@PathVariable int trainNo, @RequestBody Trains updatetrains)
+    public List<Trains> UpdateTrainById(@PathVariable int trainNo, @RequestBody Trains updateTrains)
     {
-        Optional<Trains> trains = trainRepository.findById(trainNo);
-
-        trains.get().setName(updatetrains.getName());
-        trains.get().setTotalSeats(updatetrains.getTotalSeats());
-        trainRepository.save(trains.get());
+        trainRepository.updateTrainById(trainNo,updateTrains.getName(),updateTrains.getTotalSeats());
         return trainRepository.findAll();
     }
 }

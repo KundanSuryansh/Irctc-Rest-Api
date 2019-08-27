@@ -70,4 +70,36 @@ public class Ticket implements Serializable {
     public List<Passengers> getPassengersList() {
         return passengersList;
     }
+
+    public void setPnrNo(long pnrNo) {
+        this.pnrNo = pnrNo;
+    }
+
+    public void setFromStation(String fromStation) {
+        this.fromStation = fromStation;
+    }
+
+    public void setToStation(String toStation) {
+        this.toStation = toStation;
+    }
+
+    public void setFare(int fare) {
+        this.fare = fare;
+    }
+
+    public void setNoOfSeats(int noOfSeats) {
+        NoOfSeats = noOfSeats;
+    }
+
+    public void setTrain(Trains train) {
+        this.train = train;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setPassengersList(List<Passengers> passengersList) {
+        this.passengersList = passengersList;
+    }
 }
