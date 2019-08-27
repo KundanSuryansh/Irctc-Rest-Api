@@ -3,6 +3,7 @@ package com.kundan.railticket.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -11,10 +12,11 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="passengerId")
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="passengersId")
 public class Passengers implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @JsonProperty
     private long passengersId;
 
     private String name;
@@ -23,6 +25,7 @@ public class Passengers implements Serializable {
     int seatNo;
 
     @ManyToOne
+    @JoinColumn(name="pnr_no")
     private Ticket ticket;
 
     Passengers(){}

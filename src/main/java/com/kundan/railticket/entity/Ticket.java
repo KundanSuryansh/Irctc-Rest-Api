@@ -1,6 +1,7 @@
 package com.kundan.railticket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -20,13 +21,16 @@ public class Ticket implements Serializable {
     private int NoOfSeats;
 
     @ManyToOne
+    @JoinColumn(name="train_no")
     Trains train;
 
     @ManyToOne
+    @JoinColumn(name="user_id")
     User user;
 
 
     @OneToMany(mappedBy = "ticket")
+    @JsonProperty
     List<Passengers> passengersList;
 
     Ticket(){}

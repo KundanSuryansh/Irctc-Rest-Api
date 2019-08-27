@@ -17,9 +17,11 @@ public class TrainStation implements Serializable {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name="train_no")
     private Trains train;
 
     @ManyToOne
+    @JoinColumn(name="station_id")
     private Station station;
 
     private Time arrivalTime;
