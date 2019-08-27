@@ -9,38 +9,39 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/train-details")
 public class TrainController {
 
     @Autowired
     TrainRepository trainRepository;
 
-    @GetMapping("/Trains")
+    @GetMapping("/trains")
     public List<Trains> getAllTrains()
     {
         return trainRepository.findAll();
 
     }
 
-    @GetMapping("/Train/{trainNo}")
+    @GetMapping("/train/{trainNo}")
     public Optional<Trains> getTrainById(@PathVariable int trainNo)
     {
     return trainRepository.findById(trainNo);
     }
 
-    @PostMapping("/Train")
+    @PostMapping("/train")
     public Optional<Trains> saveTrain(@RequestBody Trains trains)
     {
         trainRepository.save(trains);
         return getTrainById(trains.getTrainNo());
     }
 
-    @DeleteMapping("/Train/{trainNo}")
+    @DeleteMapping("/train/{trainNo}")
     public List<Trains> DeleteTrainById(@PathVariable int trainNo)
     {
         trainRepository.deleteById(trainNo);
         return trainRepository.findAll();
     }
-    @PutMapping("/Train/{trainNo}")
+    @PutMapping("/train/{trainNo}")
     public List<Trains> UpdateTrainById(@PathVariable int trainNo, @RequestBody Trains updatetrains)
     {
         Optional<Trains> trains = trainRepository.findById(trainNo);

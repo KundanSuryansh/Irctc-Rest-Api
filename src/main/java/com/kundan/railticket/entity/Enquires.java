@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="EnquiriesId")
-public class Enquires {
+public class Enquires implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long EnquiriesId;

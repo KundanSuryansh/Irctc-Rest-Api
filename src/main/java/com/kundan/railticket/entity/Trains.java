@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="trainNo")
-public class Trains {
+public class Trains implements Serializable {
     @Id
     private int trainNo;
 
@@ -18,15 +19,12 @@ public class Trains {
     private  int totalSeats;
 
     @OneToMany(mappedBy = "train")
-    @JsonBackReference
     List<Enquires> enquires;
 
     @OneToMany(mappedBy = "train")
-    @JsonBackReference
     List<Ticket> tickets;
 
     @OneToMany(mappedBy = "train")
-    @JsonBackReference
     List<TrainStation> trainStations;
 
     Trains(){}
