@@ -1,6 +1,10 @@
 package com.kundan.railticket.controller;
 
+import com.kundan.railticket.dao.StationRepository;
 import com.kundan.railticket.dao.TrainRepository;
+import com.kundan.railticket.dao.TrainStationRepository;
+import com.kundan.railticket.entity.Station;
+import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.entity.Trains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,12 @@ public class TrainController {
     @Autowired
     TrainRepository trainRepository;
 
+    @Autowired
+    TrainStationRepository trainStationRepository;
+
+    @Autowired
+    StationRepository stationRepository;
+
     @GetMapping("/trains")
     public List<Trains> getAllTrains()
     {
@@ -26,6 +36,13 @@ public class TrainController {
     public Optional<Trains> getTrainById(@PathVariable int trainNo)
     {
     return trainRepository.findById(trainNo);
+    }
+
+
+    @GetMapping("/train/{trainNo}/train-stations")
+    public List<TrainStation> getStationsOfTrain(@PathVariable int trainNo)
+    {
+        return trainStationRepository.getTrainStationByTrain(trainRepository.getTrainsByTrainNo(trainNo));
     }
 
     @PostMapping("/train")
@@ -47,4 +64,6 @@ public class TrainController {
         trainRepository.updateTrainById(trainNo,updateTrains.getName(),updateTrains.getTotalSeats());
         return trainRepository.findAll();
     }
+
+
 }

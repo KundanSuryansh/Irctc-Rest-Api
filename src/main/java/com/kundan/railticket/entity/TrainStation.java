@@ -2,6 +2,7 @@ package com.kundan.railticket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -15,12 +16,12 @@ public class TrainStation implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
 
-    @JsonIgnore
     @ManyToOne
     private Trains train;
 
     @ManyToOne
     private Station station;
+
     private Time arrivalTime;
     private Time departureTime;
 

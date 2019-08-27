@@ -23,6 +23,7 @@ public class Trains implements Serializable {
     @OneToMany(mappedBy = "train")
     List<Ticket> tickets;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "train")
     List<TrainStation> trainstations;
 

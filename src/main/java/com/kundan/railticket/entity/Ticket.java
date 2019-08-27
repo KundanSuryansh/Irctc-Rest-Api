@@ -25,6 +25,7 @@ public class Ticket implements Serializable {
     @ManyToOne
     User user;
 
+
     @OneToMany(mappedBy = "ticket")
     List<Passengers> passengersList;
 
