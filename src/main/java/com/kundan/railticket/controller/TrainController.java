@@ -46,10 +46,12 @@ public class TrainController {
     }
 
     @PostMapping("/train")
-    public Optional<Trains> saveTrain(@RequestBody Trains trains)
+    public List<Trains> saveTrain(@RequestBody List<Trains> trainsList)
     {
-        trainRepository.save(trains);
-        return getTrainById(trains.getTrainNo());
+        for(Trains trains:trainsList) {
+            trainRepository.save(trains);
+        }
+        return getAllTrains();
     }
 
     @DeleteMapping("/train/{trainNo}")

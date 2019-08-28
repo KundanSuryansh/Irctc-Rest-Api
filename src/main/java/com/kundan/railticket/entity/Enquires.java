@@ -16,9 +16,11 @@ public class Enquires implements Serializable {
     private long EnquiriesId;
 
     @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "train_no")
     private Trains train;
 
     private String fromStation;
