@@ -1,7 +1,10 @@
 package com.kundan.railticket.controller;
 
 import com.kundan.railticket.dao.TicketRepository;
+import com.kundan.railticket.dto.request.RequestTicketDTO;
+import com.kundan.railticket.dto.response.ResponseTicketDTO;
 import com.kundan.railticket.entity.Ticket;
+import com.kundan.railticket.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,17 +14,19 @@ import java.io.Serializable;
 public class TicketController implements Serializable {
 
     @Autowired
-    TicketRepository ticketRepository;
+    TicketService ticketService;
 
     @PostMapping("/book-ticket")
-    Ticket bookTicket(@RequestBody Ticket ticket)
+    String bookTicket(@RequestBody RequestTicketDTO ticket)
     {
-        return ticketRepository.save(ticket);
+    return ticketService.saveTicket(ticket);
+
+
     }
 
-    @GetMapping("/ticket/{pnrNo}")
-    Ticket getTicketByPnrNo(@PathVariable long pnrNo)
+/*    @GetMapping("/ticket/{pnrNo}")
+   Ticket getTicketByPnrNo(@PathVariable long pnrNo)
     {
         return ticketRepository.getTicketByPnrNo(pnrNo);
-    }
+    }*/
 }

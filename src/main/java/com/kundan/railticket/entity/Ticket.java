@@ -11,7 +11,7 @@ import java.util.List;
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="pnrNo")
 public class Ticket implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long pnrNo;
 
     private String fromStation;
@@ -29,17 +29,16 @@ public class Ticket implements Serializable {
 
 
     @OneToMany(mappedBy = "ticket")
-    List<Passengers> passengersList;
+    private List<Passengers> passengersList;
 
     Ticket(){}
-    public Ticket(String fromStation, String toStation, int fare, int noOfSeats, Trains trains, User user, List<Passengers> passengersList) {
+    public Ticket(String fromStation, String toStation, int fare, int noOfSeats, Trains trains, User user) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.fare = fare;
         NoOfSeats = noOfSeats;
         this.train = trains;
         this.user = user;
-        this.passengersList = passengersList;
     }
 
     public long getPnrNo() {

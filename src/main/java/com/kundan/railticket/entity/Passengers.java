@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class Passengers implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name = "passengers_id")
     @JsonProperty
     private long passengersId;
 

@@ -15,15 +15,15 @@ public class Trains implements Serializable {
     private String name;
     private  int totalSeats;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "train")
     List<Enquires> enquires;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "train")
     List<Ticket> tickets;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "train")
     List<TrainStation> trainstations;
 
