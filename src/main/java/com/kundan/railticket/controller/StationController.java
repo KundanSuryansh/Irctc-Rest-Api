@@ -7,8 +7,6 @@ import com.kundan.railticket.entity.Station;
 import com.kundan.railticket.entity.TrainStation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +28,7 @@ public class StationController {
     {
         return stationRepository.findAll();
     }
+    
     @PostMapping("/stations")
     List<Station> saveAllStations(List<Station> stationList)
     {
@@ -39,12 +38,14 @@ public class StationController {
         }
         return getAllStations();
     }
+
     @DeleteMapping("/station/{id}")
     List<Station> deleteStation(@PathVariable long id)
     {
         stationRepository.deleteById(id);
         return getAllStations();
     }
+
     @PutMapping("/stations")
     List<Station> updateStation(@RequestBody List<Station> stationList)
     {
@@ -54,6 +55,8 @@ public class StationController {
         }
         return getAllStations();
     }
+
+
     @GetMapping("/train-station/{trainNo}")
     Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
     {

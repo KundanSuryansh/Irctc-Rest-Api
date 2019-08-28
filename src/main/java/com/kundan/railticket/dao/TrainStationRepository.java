@@ -1,6 +1,6 @@
 package com.kundan.railticket.dao;
 
-import com.kundan.railticket.entity.Station;
+
 import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.entity.Trains;
 import org.springframework.data.jpa.repository.JpaRepository;

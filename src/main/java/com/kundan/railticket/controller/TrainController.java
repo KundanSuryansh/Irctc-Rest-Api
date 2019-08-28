@@ -3,7 +3,6 @@ package com.kundan.railticket.controller;
 import com.kundan.railticket.dao.StationRepository;
 import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.TrainStationRepository;
-import com.kundan.railticket.entity.Station;
 import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.entity.Trains;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,13 +54,12 @@ public class TrainController {
     }
 
     @DeleteMapping("/train/{trainNo}")
-    public List<Trains> DeleteTrainById(@PathVariable int trainNo)
+    public void deleteTrainById(@PathVariable int trainNo)
     {
         trainRepository.deleteById(trainNo);
-        return trainRepository.findAll();
     }
     @PutMapping("/train/{trainNo}")
-    public List<Trains> UpdateTrainById(@PathVariable int trainNo, @RequestBody Trains updateTrains)
+    public List<Trains> updateTrainById(@PathVariable int trainNo, @RequestBody Trains updateTrains)
     {
         trainRepository.updateTrainById(trainNo,updateTrains.getName(),updateTrains.getTotalSeats());
         return trainRepository.findAll();
