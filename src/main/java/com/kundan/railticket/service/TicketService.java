@@ -6,7 +6,9 @@ import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.UserRepository;
 import com.kundan.railticket.dto.request.RequestPassengersDTO;
 import com.kundan.railticket.dto.request.RequestTicketDTO;
+import com.kundan.railticket.dto.response.ResponsePassengersDTO;
 import com.kundan.railticket.dto.response.ResponseTicketDTO;
+import com.kundan.railticket.dto.response.ResponseTrainsDTO;
 import com.kundan.railticket.entity.Passengers;
 import com.kundan.railticket.entity.Ticket;
 import com.kundan.railticket.entity.Trains;
@@ -14,25 +16,30 @@ import com.kundan.railticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TicketService {
 
     @Autowired
-    TicketRepository ticketRepository;
+    private  TicketRepository ticketRepository;
 
     @Autowired
-    TrainRepository trainRepository;
+    private TrainRepository trainRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    PassengersRepository passengersRepository;
+    private  PassengersRepository passengersRepository;
 
     @Autowired
-    Ticket ticket2;
+    private  Ticket ticket2;
+
+
+
+
 
 
     public String saveTicket(RequestTicketDTO ticket)
@@ -57,8 +64,7 @@ public class TicketService {
        ticket2.setNoOfSeats(NoOfSeat);
        ticket2.setTrain(train);
        ticket2.setUser(user);
-        System.out.println(ticket2);
-       ticketRepository.save(ticket2);
+       ticket2=ticketRepository.save(ticket2);
 
        for(RequestPassengersDTO passengers : passengersDTOList)
        {
@@ -66,8 +72,23 @@ public class TicketService {
            passengersRepository.save(passengers1);
        }
 
-       return new ResponseTicketDTO().addSuccess();
+        return "Your Ticket got booked and your PNR No is "+ ticket2.getPnrNo();
 
 
+    }
+
+    public ResponseTicketDTO getTicketByPnrNo(long pnrNo) {
+        Ticket ticket=ticketRepository.getTicketByPnrNo(pnrNo);
+        List<Passengers> passengersList=ticket.getPassengersList();
+        List<ResponsePassengersDTO> responsePassengersDTOList=new ArrayList<>();
+        for(Passengers passenger : passengersList)
+        {
+            ResponsePassengersDTO responsePassengersDTO=new ResponsePassengersDTO(passenger.getName(),passenger.getGender(),passenger.getAge(),passenger.getSeatNo());
+            responsePassengersDTOList.add(responsePassengersDTO);
+        }
+        Trains trains=ticket.getTrains();
+        ResponseTrainsDTO responseTrainsDTO=new ResponseTrainsDTO(trains.getTrainNo(),trains.getName());
+        ResponseTicketDTO responseTicketDTO=new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),responseTrainsDTO,responsePassengersDTOList);
+        return responseTicketDTO;
     }
 }

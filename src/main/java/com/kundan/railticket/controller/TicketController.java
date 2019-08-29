@@ -19,15 +19,12 @@ public class TicketController implements Serializable {
     @PostMapping("/book-ticket")
     String bookTicket(@RequestBody RequestTicketDTO ticket)
     {
-        System.out.println(ticket);
     return ticketService.saveTicket(ticket);
-
-
     }
 
-/*    @GetMapping("/ticket/{pnrNo}")
-   Ticket getTicketByPnrNo(@PathVariable long pnrNo)
+    @GetMapping("/ticket/{pnrNo}")
+   ResponseTicketDTO getTicketByPnrNo(@PathVariable long pnrNo)
     {
-        return ticketRepository.getTicketByPnrNo(pnrNo);
-    }*/
+        return ticketService.getTicketByPnrNo(pnrNo);
+    }
 }
