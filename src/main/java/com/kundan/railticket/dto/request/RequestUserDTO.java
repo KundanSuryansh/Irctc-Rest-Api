@@ -25,4 +25,13 @@ public class RequestUserDTO {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "RequestUserDTO{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
+

@@ -19,6 +19,7 @@ public class TicketController implements Serializable {
     @PostMapping("/book-ticket")
     String bookTicket(@RequestBody RequestTicketDTO ticket)
     {
+        System.out.println(ticket);
     return ticketService.saveTicket(ticket);
 
 

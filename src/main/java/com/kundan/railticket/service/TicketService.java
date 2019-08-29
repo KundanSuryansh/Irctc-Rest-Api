@@ -32,7 +32,9 @@ public class TicketService {
     PassengersRepository passengersRepository;
 
     @Autowired
-    ResponseTicketDTO responseTicketDTO;
+    Ticket ticket2;
+
+
     public String saveTicket(RequestTicketDTO ticket)
     {
         String toStation=ticket.getToStation();
@@ -49,16 +51,22 @@ public class TicketService {
         Trains train=trainRepository.getTrainsByTrainNo(trainNo);
         User user=userRepository.getUserByUserId(userId);
 
-       Ticket ticket1=new Ticket(fromStation,toStation,fare,NoOfSeat,train,user);
-       ticketRepository.save(ticket1).getPnrNo();
+       ticket2.setFromStation(fromStation);
+       ticket2.setToStation(toStation);
+       ticket2.setFare(fare);
+       ticket2.setNoOfSeats(NoOfSeat);
+       ticket2.setTrain(train);
+       ticket2.setUser(user);
+        System.out.println(ticket2);
+       ticketRepository.save(ticket2);
 
        for(RequestPassengersDTO passengers : passengersDTOList)
        {
-           Passengers passengers1=new Passengers(passengers.getName(),passengers.getGender(),passengers.getAge(),seatNo,ticket1);
+           Passengers passengers1=new Passengers(passengers.getName(),passengers.getGender(),passengers.getAge(),seatNo,ticket2);
            passengersRepository.save(passengers1);
        }
 
-       return responseTicketDTO.addSuccess();
+       return new ResponseTicketDTO().addSuccess();
 
 
     }

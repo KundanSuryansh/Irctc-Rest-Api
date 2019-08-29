@@ -2,12 +2,16 @@ package com.kundan.railticket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
+@Component
 @Entity
+@Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="pnrNo")
 public class Ticket implements Serializable {
     @Id
@@ -31,7 +35,7 @@ public class Ticket implements Serializable {
     @OneToMany(mappedBy = "ticket")
     private List<Passengers> passengersList;
 
-    Ticket(){}
+    public Ticket(){}
     public Ticket(String fromStation, String toStation, int fare, int noOfSeats, Trains trains, User user) {
         this.fromStation = fromStation;
         this.toStation = toStation;
@@ -103,5 +107,19 @@ public class Ticket implements Serializable {
 
     public void setPassengersList(List<Passengers> passengersList) {
         this.passengersList = passengersList;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "pnrNo=" + pnrNo +
+                ", fromStation='" + fromStation + '\'' +
+                ", toStation='" + toStation + '\'' +
+                ", fare=" + fare +
+                ", NoOfSeats=" + NoOfSeats +
+                ", train=" + train +
+                ", user=" + user +
+                ", passengersList=" + passengersList +
+                '}';
     }
 }

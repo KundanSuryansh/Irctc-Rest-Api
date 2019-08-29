@@ -59,4 +59,15 @@ public class RequestTicketDTO {
     public void setPassengersList(List<RequestPassengersDTO> passengersList) {
         this.passengersList = passengersList;
     }
+
+    @Override
+    public String toString() {
+        return "RequestTicketDTO{" +
+                "fromStation='" + fromStation + '\'' +
+                ", toStation='" + toStation + '\'' +
+                ", train=" + train +
+                ", user=" + user +
+                ", passengersList=" + passengersList +
+                '}';
+    }
 }

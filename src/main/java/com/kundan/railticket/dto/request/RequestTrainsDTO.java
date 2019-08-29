@@ -25,4 +25,12 @@ public class RequestTrainsDTO {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "RequestTrainsDTO{" +
+                "trainNo=" + trainNo +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
