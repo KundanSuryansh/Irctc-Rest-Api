@@ -24,13 +24,13 @@ public class StationController {
     TrainRepository trainRepository;
 
     @GetMapping("/stations")
-    List<Station> getAllStations()
+   public List<Station> getAllStations()
     {
         return stationRepository.findAll();
     }
     
     @PostMapping("/stations")
-    List<Station> saveAllStations(List<Station> stationList)
+    public List<Station> saveAllStations(List<Station> stationList)
     {
         for (Station station:stationList)
         {
@@ -40,14 +40,14 @@ public class StationController {
     }
 
     @DeleteMapping("/station/{id}")
-    List<Station> deleteStation(@PathVariable long id)
+    public List<Station> deleteStation(@PathVariable long id)
     {
         stationRepository.deleteById(id);
         return getAllStations();
     }
 
     @PutMapping("/stations")
-    List<Station> updateStation(@RequestBody List<Station> stationList)
+   public  List<Station> updateStation(@RequestBody List<Station> stationList)
     {
         for(Station station : stationList)
         {
@@ -58,9 +58,9 @@ public class StationController {
 
 
     @GetMapping("/train-station/{trainNo}")
-    Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
+   public  Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
     {
-        Map<String,String> map=new HashMap<String, String>();
+        Map<String,String> map=new HashMap<>();
 
         List<TrainStation> trainStations=trainStationRepository.getTrainStationByTrain(trainRepository.getTrainsByTrainNo(trainNo));
         for(TrainStation trainStation:trainStations)

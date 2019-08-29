@@ -4,7 +4,6 @@ import com.kundan.railticket.dao.StationRepository;
 import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.TrainStationRepository;
 import com.kundan.railticket.dto.request.RequestTrainsDTO;
-import com.kundan.railticket.dto.response.ResponseTicketDTO;
 import com.kundan.railticket.dto.response.ResponseTrainsDTO;
 import com.kundan.railticket.entity.Trains;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +37,8 @@ public class TrainService {
     public ResponseTrainsDTO getTrainById(int trainNo)
     {
         Trains trains=trainRepository.getTrainsByTrainNo(trainNo);
-        ResponseTrainsDTO responseTrainsDTO=new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats());
-        return responseTrainsDTO;
+        return  new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats());
+
     }
 
     public String save(List<RequestTrainsDTO> trainsList) {

@@ -1,18 +1,13 @@
 package com.kundan.railticket.controller;
 
-import com.kundan.railticket.dao.StationRepository;
-import com.kundan.railticket.dao.TrainRepository;
-import com.kundan.railticket.dao.TrainStationRepository;
 import com.kundan.railticket.dto.request.RequestTrainsDTO;
 import com.kundan.railticket.dto.response.ResponseTrainsDTO;
-import com.kundan.railticket.entity.TrainStation;
-import com.kundan.railticket.entity.Trains;
 import com.kundan.railticket.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/train-details")

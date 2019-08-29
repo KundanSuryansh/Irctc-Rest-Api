@@ -1,10 +1,5 @@
 package com.kundan.railticket.dto.response;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
-
-import java.io.Serializable;
 import java.util.List;
 
 

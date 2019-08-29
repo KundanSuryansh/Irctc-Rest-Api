@@ -8,7 +8,6 @@ import com.kundan.railticket.dto.request.RequestPassengersDTO;
 import com.kundan.railticket.dto.request.RequestTicketDTO;
 import com.kundan.railticket.dto.response.ResponsePassengersDTO;
 import com.kundan.railticket.dto.response.ResponseTicketDTO;
-import com.kundan.railticket.dto.response.ResponseTrainsDTO;
 import com.kundan.railticket.entity.Passengers;
 import com.kundan.railticket.entity.Ticket;
 import com.kundan.railticket.entity.Trains;
@@ -82,7 +81,7 @@ public class TicketService {
             responsePassengersDTOList.add(responsePassengersDTO);
         }
         Trains trains=ticket.getTrains();
-        ResponseTicketDTO responseTicketDTO=new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),trains.getTrainNo(),trains.getName(),responsePassengersDTOList);
-        return responseTicketDTO;
+       return new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),trains.getTrainNo(),trains.getName(),responsePassengersDTOList);
+
     }
 }

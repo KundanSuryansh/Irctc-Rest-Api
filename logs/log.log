@@ -2121,3 +2121,7 @@ java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '0' for key '
 2019-08-29 16:12:22.836  WARN 14214 --- [http-nio-8080-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `com.kundan.railticket.dto.request.RequestTrainsDTO` out of START_ARRAY token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `com.kundan.railticket.dto.request.RequestTrainsDTO` out of START_ARRAY token
  at [Source: (PushbackInputStream); line: 1, column: 1]]
 2019-08-29 16:15:38.379  WARN 14214 --- [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' not supported]
+2019-08-29 17:32:26.203  INFO 14214 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-08-29 17:32:26.204  INFO 14214 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-08-29 17:32:26.205  INFO 14214 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-08-29 17:32:26.211  INFO 14214 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

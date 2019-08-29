@@ -19,7 +19,7 @@ public class Station implements Serializable {
 
     @OneToMany(mappedBy = "station")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    List<TrainStation> trainStationList;
+    private List<TrainStation> trainStationList;
 
     Station(){}
     public Station(String name, List<TrainStation> trainStationList) {
