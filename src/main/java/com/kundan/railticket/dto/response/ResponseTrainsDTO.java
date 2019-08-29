@@ -10,11 +10,14 @@ public class ResponseTrainsDTO {
 
      int trainNo;
      String name;
+     int totalSeat;
 
     public ResponseTrainsDTO(){}
-    public ResponseTrainsDTO(int trainNo, String name) {
+
+    public ResponseTrainsDTO(int trainNo, String name, int totalSeat) {
         this.trainNo = trainNo;
         this.name = name;
+        this.totalSeat = totalSeat;
     }
 
     public int getTrainNo() {
@@ -31,5 +34,13 @@ public class ResponseTrainsDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTotalSeat() {
+        return totalSeat;
+    }
+
+    public void setTotalSeat(int totalSeat) {
+        this.totalSeat = totalSeat;
     }
 }

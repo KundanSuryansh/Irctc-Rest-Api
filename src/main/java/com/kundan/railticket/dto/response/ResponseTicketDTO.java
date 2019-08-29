@@ -12,15 +12,17 @@ public class ResponseTicketDTO{
 
      String fromStation;
      String toStation;
-    ResponseTrainsDTO train;
+     int trainNo;
+     String trainName;
      List<ResponsePassengersDTO> passengersList;
 
     public ResponseTicketDTO(){}
 
-    public ResponseTicketDTO(String fromStation, String toStation, ResponseTrainsDTO train, List<ResponsePassengersDTO> passengersList) {
+    public ResponseTicketDTO(String fromStation, String toStation, int trainNo, String trainName, List<ResponsePassengersDTO> passengersList) {
         this.fromStation = fromStation;
         this.toStation = toStation;
-        this.train = train;
+        this.trainNo = trainNo;
+        this.trainName = trainName;
         this.passengersList = passengersList;
     }
 
@@ -40,12 +42,20 @@ public class ResponseTicketDTO{
         this.toStation = toStation;
     }
 
-    public ResponseTrainsDTO getTrain() {
-        return train;
+    public int getTrainNo() {
+        return trainNo;
     }
 
-    public void setTrain(ResponseTrainsDTO train) {
-        this.train = train;
+    public void setTrainNo(int trainNo) {
+        this.trainNo = trainNo;
+    }
+
+    public String getTrainName() {
+        return trainName;
+    }
+
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
     }
 
     public List<ResponsePassengersDTO> getPassengersList() {

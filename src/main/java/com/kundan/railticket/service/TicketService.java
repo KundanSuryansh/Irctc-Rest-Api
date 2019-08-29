@@ -37,18 +37,13 @@ public class TicketService {
     @Autowired
     private  Ticket ticket2;
 
-
-
-
-
-
     public String saveTicket(RequestTicketDTO ticket)
     {
         String toStation=ticket.getToStation();
         String fromStation=ticket.getFromStation();
         int NoOfSeat=ticket.getPassengersList().size();
         int fare=100;
-        int trainNo=ticket.getTrain().getTrainNo();
+        int trainNo=ticket.getTrainNo();
         long userId=ticket.getUser().getUserId();
         int seatNo=12;
 
@@ -87,8 +82,7 @@ public class TicketService {
             responsePassengersDTOList.add(responsePassengersDTO);
         }
         Trains trains=ticket.getTrains();
-        ResponseTrainsDTO responseTrainsDTO=new ResponseTrainsDTO(trains.getTrainNo(),trains.getName());
-        ResponseTicketDTO responseTicketDTO=new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),responseTrainsDTO,responsePassengersDTOList);
+        ResponseTicketDTO responseTicketDTO=new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),trains.getTrainNo(),trains.getName(),responsePassengersDTOList);
         return responseTicketDTO;
     }
 }

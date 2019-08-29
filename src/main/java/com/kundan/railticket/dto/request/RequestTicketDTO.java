@@ -5,17 +5,19 @@ import java.util.List;
 public class RequestTicketDTO {
     private String fromStation;
     private String toStation;
-    RequestTrainsDTO train;
+    int trainNo;
+    String trainName;
     RequestUserDTO user;
     private List<RequestPassengersDTO> passengersList;
 
     public RequestTicketDTO() {
     }
 
-    public RequestTicketDTO(String fromStation, String toStation, RequestTrainsDTO train, RequestUserDTO user, List<RequestPassengersDTO> passengersList) {
+    public RequestTicketDTO(String fromStation, String toStation, int trainNo, String trainName, RequestUserDTO user, List<RequestPassengersDTO> passengersList) {
         this.fromStation = fromStation;
         this.toStation = toStation;
-        this.train = train;
+        this.trainNo = trainNo;
+        this.trainName = trainName;
         this.user = user;
         this.passengersList = passengersList;
     }
@@ -36,12 +38,20 @@ public class RequestTicketDTO {
         this.toStation = toStation;
     }
 
-    public RequestTrainsDTO getTrain() {
-        return train;
+    public int getTrainNo() {
+        return trainNo;
     }
 
-    public void setTrain(RequestTrainsDTO train) {
-        this.train = train;
+    public void setTrainNo(int trainNo) {
+        this.trainNo = trainNo;
+    }
+
+    public String getTrainName() {
+        return trainName;
+    }
+
+    public void setTrainName(String trainName) {
+        this.trainName = trainName;
     }
 
     public RequestUserDTO getUser() {
@@ -58,16 +68,5 @@ public class RequestTicketDTO {
 
     public void setPassengersList(List<RequestPassengersDTO> passengersList) {
         this.passengersList = passengersList;
-    }
-
-    @Override
-    public String toString() {
-        return "RequestTicketDTO{" +
-                "fromStation='" + fromStation + '\'' +
-                ", toStation='" + toStation + '\'' +
-                ", train=" + train +
-                ", user=" + user +
-                ", passengersList=" + passengersList +
-                '}';
     }
 }

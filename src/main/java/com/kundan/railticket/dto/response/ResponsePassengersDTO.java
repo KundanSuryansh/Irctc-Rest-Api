@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class ResponsePassengersDTO {
      String name;
      String gender;
-    int age;
-    int seatNo;
+     int age;
+     int seatNo;
 
     public ResponsePassengersDTO(String name, String gender, int age, int seatNo) {
         this.name = name;

@@ -3,8 +3,11 @@ package com.kundan.railticket.controller;
 import com.kundan.railticket.dao.StationRepository;
 import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.TrainStationRepository;
+import com.kundan.railticket.dto.request.RequestTrainsDTO;
+import com.kundan.railticket.dto.response.ResponseTrainsDTO;
 import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.entity.Trains;
+import com.kundan.railticket.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,54 +19,34 @@ import java.util.Optional;
 public class TrainController {
 
     @Autowired
-    TrainRepository trainRepository;
-
-    @Autowired
-    TrainStationRepository trainStationRepository;
-
-    @Autowired
-    StationRepository stationRepository;
+    TrainService trainService;
 
     @GetMapping("/trains")
-    public List<Trains> getAllTrains()
+    public List<ResponseTrainsDTO> getAllTrains()
     {
-        return trainRepository.findAll();
+        return trainService.getAllTrains();
 
     }
-
     @GetMapping("/train/{trainNo}")
-    public Optional<Trains> getTrainById(@PathVariable int trainNo)
+    public ResponseTrainsDTO getTrainById(@PathVariable int trainNo)
     {
-    return trainRepository.findById(trainNo);
+    return trainService.getTrainById(trainNo);
     }
-
-
-    @GetMapping("/train/{trainNo}/train-stations")
-    public List<TrainStation> getStationsOfTrain(@PathVariable int trainNo)
-    {
-        return trainStationRepository.getTrainStationByTrain(trainRepository.getTrainsByTrainNo(trainNo));
-    }
-
     @PostMapping("/train")
-    public List<Trains> saveTrain(@RequestBody List<Trains> trainsList)
+    public String saveTrain(@RequestBody List<RequestTrainsDTO> trainsList)
     {
-        for(Trains trains:trainsList) {
-            trainRepository.save(trains);
-        }
-        return getAllTrains();
+        return trainService.save(trainsList);
     }
 
     @DeleteMapping("/train/{trainNo}")
-    public void deleteTrainById(@PathVariable int trainNo)
+    public String deleteTrainById(@PathVariable int trainNo)
     {
-        trainRepository.deleteById(trainNo);
+        return trainService.deleteById(trainNo);
     }
     @PutMapping("/train/{trainNo}")
-    public List<Trains> updateTrainById(@PathVariable int trainNo, @RequestBody Trains updateTrains)
+    public String updateTrainById(@PathVariable int trainNo, @RequestBody RequestTrainsDTO requestTrainsDTO)
     {
-        trainRepository.updateTrainById(trainNo,updateTrains.getName(),updateTrains.getTotalSeats());
-        return trainRepository.findAll();
+        return trainService.updateTrain(trainNo,requestTrainsDTO);
     }
-
 
 }
