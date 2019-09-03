@@ -25,6 +25,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Ticket> ticketSet;
 
+    @OneToMany(mappedBy = "user")
+    private List<Roles> roles;
+
     User(){}
     public User(String name) {
         this.name = name;
@@ -64,5 +67,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
     }
 }
