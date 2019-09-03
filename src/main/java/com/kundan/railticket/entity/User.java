@@ -2,6 +2,8 @@ package com.kundan.railticket.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,7 +27,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<Ticket> ticketSet;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<Roles> roles;
 
     User(){}
@@ -75,5 +77,17 @@ public class User implements Serializable {
 
     public void setRoles(List<Roles> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", enquiresList=" + enquiresList +
+                ", ticketSet=" + ticketSet +
+                ", roles=" + roles +
+                '}';
     }
 }

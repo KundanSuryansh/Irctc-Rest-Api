@@ -22,10 +22,11 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> list = new ArrayList<>();
+
+       List<GrantedAuthority> list = new ArrayList<>();
         for(Roles roles:user.getRoles())
         {
-            list.add(new SimpleGrantedAuthority(ROLE_PREFIX + roles));
+            list.add(new SimpleGrantedAuthority(ROLE_PREFIX + roles.getRole()));
         }
 
         return list;

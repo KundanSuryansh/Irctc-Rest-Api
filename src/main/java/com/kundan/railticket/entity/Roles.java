@@ -1,5 +1,6 @@
 package com.kundan.railticket.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -15,7 +16,9 @@ public class Roles {
 
     private String role;
 
+    Roles(){}
     @ManyToOne
+    @JoinColumn(name = "user_id")
    private User user;
 
     public Roles(int id, String role, User user) {
@@ -46,5 +49,14 @@ public class Roles {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
