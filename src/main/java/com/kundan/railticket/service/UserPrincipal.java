@@ -1,16 +1,20 @@
 package com.kundan.railticket.service;
 
+import com.kundan.railticket.entity.Roles;
 import com.kundan.railticket.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
     private User user;
+    private String ROLE_PREFIX="ROLE_";
 
     public UserPrincipal(User user) {
         this.user = user;
@@ -18,7 +22,14 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+
+       List<GrantedAuthority> list = new ArrayList<>();
+        for(Roles roles:user.getRoles())
+        {
+            list.add(new SimpleGrantedAuthority(ROLE_PREFIX + roles.getRole()));
+        }
+
+        return list;
     }
 
     @Override
