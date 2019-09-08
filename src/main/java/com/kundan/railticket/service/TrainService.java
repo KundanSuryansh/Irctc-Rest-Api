@@ -5,6 +5,7 @@ import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.TrainStationRepository;
 import com.kundan.railticket.dto.request.RequestTrainsDTO;
 import com.kundan.railticket.dto.response.ResponseTrainsDTO;
+import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.entity.Trains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,13 @@ public class TrainService {
         List<ResponseTrainsDTO> responseTrainsDTOList=new ArrayList<>();
         for(Trains trains:trainsList)
         {
-            ResponseTrainsDTO responseTrainsDTO=new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats());
+            List<TrainStation> trainStations=trainStationRepository.getTrainStationByTrain(trains);
+            List<String> stations=new ArrayList<>();
+            for(TrainStation trainStation:trainStations)
+            {
+                stations.add(trainStation.getStations().getName());
+            }
+            ResponseTrainsDTO responseTrainsDTO=new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats(),stations);
             responseTrainsDTOList.add(responseTrainsDTO);
         }
         return responseTrainsDTOList;
@@ -37,7 +44,13 @@ public class TrainService {
     public ResponseTrainsDTO getTrainById(int trainNo)
     {
         Trains trains=trainRepository.getTrainsByTrainNo(trainNo);
-        return  new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats());
+        List<TrainStation> trainStations=trainStationRepository.getTrainStationByTrain(trains);
+        List<String> stations=new ArrayList<>();
+        for(TrainStation trainStation:trainStations)
+        {
+            stations.add(trainStation.getStations().getName());
+        }
+        return  new ResponseTrainsDTO(trains.getTrainNo(),trains.getName(),trains.getTotalSeats(),stations);
 
     }
 
@@ -55,8 +68,8 @@ public class TrainService {
         return "deleted successfully";
     }
 
-    public String updateTrain(int trainNo, RequestTrainsDTO requestTrainsDTO) {
-        trainRepository.updateTrainById(trainNo,requestTrainsDTO.getName(),requestTrainsDTO.getTotalSeat());
+    public String updateTrain(RequestTrainsDTO requestTrainsDTO) {
+        trainRepository.updateTrainById(requestTrainsDTO.getTrainNo(),requestTrainsDTO.getName(),requestTrainsDTO.getTotalSeat());
         return "updated Successfully";
     }
 }

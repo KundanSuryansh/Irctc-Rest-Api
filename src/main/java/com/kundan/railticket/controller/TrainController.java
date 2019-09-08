@@ -10,7 +10,6 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/train-details")
 public class TrainController {
 
     @Autowired
@@ -27,21 +26,21 @@ public class TrainController {
     {
     return trainService.getTrainById(trainNo);
     }
-    @PostMapping("/train")
+    @PostMapping("/admin/train")
     public String saveTrain(@RequestBody List<RequestTrainsDTO> trainsList)
     {
         return trainService.save(trainsList);
     }
 
-    @DeleteMapping("/train/{trainNo}")
+    @DeleteMapping("/admin/train/{trainNo}")
     public String deleteTrainById(@PathVariable int trainNo)
     {
         return trainService.deleteById(trainNo);
     }
-    @PutMapping("/train/{trainNo}")
-    public String updateTrainById(@PathVariable int trainNo, @RequestBody RequestTrainsDTO requestTrainsDTO)
+    @PutMapping("/admin/train")
+    public String updateTrainById( @RequestBody RequestTrainsDTO requestTrainsDTO)
     {
-        return trainService.updateTrain(trainNo,requestTrainsDTO);
+        return trainService.updateTrain(requestTrainsDTO);
     }
 
 }

@@ -36,14 +36,14 @@ public class TicketService {
     @Autowired
     private  Ticket ticket2;
 
-    public String saveTicket(RequestTicketDTO ticket)
+    public String saveTicket(String username,RequestTicketDTO ticket)
     {
         String toStation=ticket.getToStation();
         String fromStation=ticket.getFromStation();
         int NoOfSeat=ticket.getPassengersList().size();
         int fare=100;
         int trainNo=ticket.getTrainNo();
-        long userId=ticket.getUser().getUserId();
+        long userId=Long.valueOf(username);
         int seatNo=12;
 
         List<RequestPassengersDTO> passengersDTOList=ticket.getPassengersList();

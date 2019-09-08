@@ -21,8 +21,7 @@ public class Roles {
     @JoinColumn(name = "user_id")
    private User user;
 
-    public Roles(int id, String role, User user) {
-        this.id = id;
+    public Roles(String role, User user) {
         this.role = role;
         this.user = user;
     }

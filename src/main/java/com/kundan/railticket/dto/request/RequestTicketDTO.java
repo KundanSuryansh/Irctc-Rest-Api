@@ -6,20 +6,15 @@ public class RequestTicketDTO {
     private String fromStation;
     private String toStation;
     int trainNo;
-    String trainName;
-    RequestUserDTO user;
     private List<RequestPassengersDTO> passengersList;
 
     public RequestTicketDTO() {
     }
 
-    public RequestTicketDTO(String fromStation, String toStation, int trainNo, String trainName, RequestUserDTO user, List<RequestPassengersDTO> passengersList) {
+    public RequestTicketDTO(String fromStation, String toStation, int trainNo) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.trainNo = trainNo;
-        this.trainName = trainName;
-        this.user = user;
-        this.passengersList = passengersList;
     }
 
     public String getFromStation() {
@@ -46,21 +41,7 @@ public class RequestTicketDTO {
         this.trainNo = trainNo;
     }
 
-    public String getTrainName() {
-        return trainName;
-    }
 
-    public void setTrainName(String trainName) {
-        this.trainName = trainName;
-    }
-
-    public RequestUserDTO getUser() {
-        return user;
-    }
-
-    public void setUser(RequestUserDTO user) {
-        this.user = user;
-    }
 
     public List<RequestPassengersDTO> getPassengersList() {
         return passengersList;

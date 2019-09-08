@@ -1,22 +1,20 @@
 package com.kundan.railticket.dto.request;
 
+import javax.validation.constraints.NotNull;
+
 public class RequestUserDTO {
-    private long userId;
+
+    @NotNull
     private  String name;
+    @NotNull
+    private String password;
 
-    public RequestUserDTO(long userId, String name) {
-        this.userId = userId;
+    public RequestUserDTO(String name, String password) {
         this.name = name;
+        this.password = password;
     }
+
     RequestUserDTO(){}
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public String getName() {
         return name;
@@ -26,10 +24,18 @@ public class RequestUserDTO {
         this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "RequestUserDTO{" +
-                "userId=" + userId +
+                "userId=" +
                 ", name='" + name + '\'' +
                 '}';
     }
