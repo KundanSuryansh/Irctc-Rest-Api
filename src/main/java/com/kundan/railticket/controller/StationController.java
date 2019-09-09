@@ -9,6 +9,7 @@ import com.kundan.railticket.dto.response.ResponseTicketDTO;
 import com.kundan.railticket.entity.Station;
 import com.kundan.railticket.entity.TrainStation;
 import com.kundan.railticket.service.StationService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
@@ -27,24 +28,28 @@ public class StationController {
     @Autowired
     TrainRepository trainRepository;
 
+    @ApiOperation(value = "To get the details of all stations")
     @GetMapping("/user/stations")
    public List<ResponseStationDTO> getAllStations()
     {
         return stationService.getAllStation();
     }
-    
+
+    @ApiOperation(value = "To save the stations,can be done by admin only")
     @PostMapping("/admin/stations")
     public String saveAllStations(List<RequestStationDTO> requestStationDTOS)
     {
       return   stationService.save(requestStationDTOS);
     }
 
+    @ApiOperation(value = "To delete the station,can be done by admin only")
     @DeleteMapping("/admin/station/{id}")
     public String deleteStation(@PathVariable long id)
     {
        return stationService.deleteStationById(id);
     }
 
+    @ApiOperation(value = "To update the station,can be done by admin only")
     @PutMapping("/admin/stations/{id}")
    public  String updateStation(@PathVariable long id,@RequestBody RequestStationDTO requestStationDTO)
     {
@@ -52,6 +57,7 @@ public class StationController {
     }
 
 
+    @ApiOperation(value = "To delete the detail of train passing through different station with arrival time")
     @GetMapping("/user/train-station/{trainNo}")
    public  Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
     {
