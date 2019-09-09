@@ -37,13 +37,12 @@ public class Ticket implements Serializable {
 
     public Ticket(){}
 
-    public Ticket(String fromStation, String toStation, Date journeyDate, Trains train, User user, List<Passengers> passengersList) {
+    public Ticket(String fromStation, String toStation, Date journeyDate, Trains train, User user) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.journeyDate = journeyDate;
         this.train = train;
         this.user = user;
-        this.passengersList = passengersList;
     }
 
     public long getPnrNo() {
