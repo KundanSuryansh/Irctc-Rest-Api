@@ -52,7 +52,7 @@ public class StationController {
     }
 
 
-    @GetMapping("/train-station/{trainNo}")
+    @GetMapping("/user/train-station/{trainNo}")
    public  Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
     {
         return stationService.getAllStationOfTrainWithArrivalTime(trainNo);

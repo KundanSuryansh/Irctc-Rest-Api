@@ -31,7 +31,7 @@ public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/train-details/trains").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/train-details/train").hasRole("ADMIN");
+                .antMatchers(HttpMethod.GET,"/user/**").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/admin/**").hasRole("ADMIN");
     }
 }
