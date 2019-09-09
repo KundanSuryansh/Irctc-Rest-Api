@@ -15,6 +15,7 @@ import com.kundan.railticket.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +34,12 @@ public class TicketService {
     @Autowired
     private  PassengersRepository passengersRepository;
 
-    @Autowired
-    private  Ticket ticket2;
+
+
 
     public String saveTicket(String username,RequestTicketDTO ticket)
     {
+        Ticket ticket2=new Ticket();
         String toStation=ticket.getToStation();
         String fromStation=ticket.getFromStation();
         int NoOfSeat=ticket.getPassengersList().size();
@@ -45,6 +47,9 @@ public class TicketService {
         int trainNo=ticket.getTrainNo();
         long userId=Long.valueOf(username);
         int seatNo=12;
+        Date journeyDate=ticket.getJourneyDate();
+        System.out.println(journeyDate);
+        System.out.println(userId);
 
         List<RequestPassengersDTO> passengersDTOList=ticket.getPassengersList();
 
@@ -58,6 +63,7 @@ public class TicketService {
        ticket2.setNoOfSeats(NoOfSeat);
        ticket2.setTrain(train);
        ticket2.setUser(user);
+       ticket2.setJourneyDate(journeyDate);
        ticket2=ticketRepository.save(ticket2);
 
        for(RequestPassengersDTO passengers : passengersDTOList)
@@ -81,7 +87,7 @@ public class TicketService {
             responsePassengersDTOList.add(responsePassengersDTO);
         }
         Trains trains=ticket.getTrains();
-       return new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),trains.getTrainNo(),trains.getName(),responsePassengersDTOList);
+       return new ResponseTicketDTO(ticket.getFromStation(),ticket.getToStation(),trains.getTrainNo(),trains.getName(),ticket.getJourneyDate(),responsePassengersDTOList);
 
     }
 }

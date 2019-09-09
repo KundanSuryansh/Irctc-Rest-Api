@@ -1,20 +1,23 @@
 package com.kundan.railticket.dto.request;
 
+import java.sql.Date;
 import java.util.List;
 
 public class RequestTicketDTO {
     private String fromStation;
     private String toStation;
     int trainNo;
+    private Date journeyDate;
     private List<RequestPassengersDTO> passengersList;
 
     public RequestTicketDTO() {
     }
 
-    public RequestTicketDTO(String fromStation, String toStation, int trainNo) {
+    public RequestTicketDTO(String fromStation, String toStation, int trainNo, Date journeyDate) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.trainNo = trainNo;
+        this.journeyDate = journeyDate;
     }
 
     public String getFromStation() {
@@ -42,6 +45,13 @@ public class RequestTicketDTO {
     }
 
 
+    public Date getJourneyDate() {
+        return journeyDate;
+    }
+
+    public void setJourneyDate(Date journeyDate) {
+        this.journeyDate = journeyDate;
+    }
 
     public List<RequestPassengersDTO> getPassengersList() {
         return passengersList;

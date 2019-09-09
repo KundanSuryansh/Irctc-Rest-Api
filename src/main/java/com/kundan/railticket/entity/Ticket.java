@@ -8,10 +8,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
-@Component
 @Entity
-@Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
 @JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="pnrNo")
 public class Ticket implements Serializable {
     @Id
@@ -22,6 +21,7 @@ public class Ticket implements Serializable {
     private String toStation;
     private int fare;
     private int NoOfSeats;
+    private Date journeyDate;
 
     @ManyToOne
     @JoinColumn(name="train_no")
@@ -36,13 +36,14 @@ public class Ticket implements Serializable {
     private List<Passengers> passengersList;
 
     public Ticket(){}
-    public Ticket(String fromStation, String toStation, int fare, int noOfSeats, Trains trains, User user) {
+
+    public Ticket(String fromStation, String toStation, Date journeyDate, Trains train, User user, List<Passengers> passengersList) {
         this.fromStation = fromStation;
         this.toStation = toStation;
-        this.fare = fare;
-        NoOfSeats = noOfSeats;
-        this.train = trains;
+        this.journeyDate = journeyDate;
+        this.train = train;
         this.user = user;
+        this.passengersList = passengersList;
     }
 
     public long getPnrNo() {
@@ -109,6 +110,15 @@ public class Ticket implements Serializable {
         this.passengersList = passengersList;
     }
 
+    public Date getJourneyDate() {
+        return journeyDate;
+    }
+
+    public void setJourneyDate(Date journeyDate) {
+        this.journeyDate = journeyDate;
+    }
+
+
     @Override
     public String toString() {
         return "Ticket{" +
@@ -117,6 +127,7 @@ public class Ticket implements Serializable {
                 ", toStation='" + toStation + '\'' +
                 ", fare=" + fare +
                 ", NoOfSeats=" + NoOfSeats +
+                ", journeyDate=" + journeyDate +
                 ", train=" + train +
                 ", user=" + user +
                 ", passengersList=" + passengersList +

@@ -14,13 +14,13 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
-    @PostMapping("/book-ticket")
+    @PostMapping("/user/book-ticket")
    public String bookTicket(Authentication authentication, @RequestBody RequestTicketDTO ticket)
     {
     return ticketService.saveTicket(authentication.getName(),ticket);
     }
 
-    @GetMapping("/ticket/{pnrNo}")
+    @GetMapping("/user/ticket/{pnrNo}")
    public ResponseTicketDTO getTicketByPnrNo(@PathVariable long pnrNo)
     {
         return ticketService.getTicketByPnrNo(pnrNo);

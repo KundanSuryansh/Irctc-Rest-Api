@@ -23,13 +23,13 @@ public class StationController {
     @Autowired
     TrainRepository trainRepository;
 
-    @GetMapping("/stations")
+    @GetMapping("/user/stations")
    public List<Station> getAllStations()
     {
         return stationRepository.findAll();
     }
     
-    @PostMapping("/stations")
+    @PostMapping("/admin/stations")
     public List<Station> saveAllStations(List<Station> stationList)
     {
         for (Station station:stationList)
@@ -39,14 +39,14 @@ public class StationController {
         return getAllStations();
     }
 
-    @DeleteMapping("/station/{id}")
+    @DeleteMapping("/admin/station/{id}")
     public List<Station> deleteStation(@PathVariable long id)
     {
         stationRepository.deleteById(id);
         return getAllStations();
     }
 
-    @PutMapping("/stations")
+    @PutMapping("/admin/stations")
    public  List<Station> updateStation(@RequestBody List<Station> stationList)
     {
         for(Station station : stationList)

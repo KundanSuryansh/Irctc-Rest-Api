@@ -1,5 +1,6 @@
 package com.kundan.railticket.dto.response;
 
+import java.sql.Date;
 import java.util.List;
 
 
@@ -9,15 +10,17 @@ public class ResponseTicketDTO{
      String toStation;
      int trainNo;
      String trainName;
+     Date journeyDate;
      List<ResponsePassengersDTO> passengersList;
 
     public ResponseTicketDTO(){}
 
-    public ResponseTicketDTO(String fromStation, String toStation, int trainNo, String trainName, List<ResponsePassengersDTO> passengersList) {
+    public ResponseTicketDTO(String fromStation, String toStation, int trainNo, String trainName, Date journeyDate, List<ResponsePassengersDTO> passengersList) {
         this.fromStation = fromStation;
         this.toStation = toStation;
         this.trainNo = trainNo;
         this.trainName = trainName;
+        this.journeyDate = journeyDate;
         this.passengersList = passengersList;
     }
 
@@ -61,4 +64,11 @@ public class ResponseTicketDTO{
         this.passengersList = passengersList;
     }
 
+    public Date getJourneyDate() {
+        return journeyDate;
+    }
+
+    public void setJourneyDate(Date journeyDate) {
+        this.journeyDate = journeyDate;
+    }
 }
