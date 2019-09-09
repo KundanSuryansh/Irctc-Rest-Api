@@ -37,7 +37,7 @@ public class TicketService {
         int noOfSeat = requestTicketDto.getPassengersList().size();
         int fare = 100 * noOfSeat;
         int trainNo = requestTicketDto.getTrainNo();
-        long userId = Long.valueOf(username);
+        long userId = Long.parseLong(username);
         int seatNo = 12;
         Date journeyDate = requestTicketDto.getJourneyDate();
         List<RequestPassengersDTO> passengersDTOList = requestTicketDto.getPassengersList();

@@ -3,8 +3,12 @@ package com.kundan.railticket.controller;
 import com.kundan.railticket.dao.StationRepository;
 import com.kundan.railticket.dao.TrainRepository;
 import com.kundan.railticket.dao.TrainStationRepository;
+import com.kundan.railticket.dto.request.RequestStationDTO;
+import com.kundan.railticket.dto.response.ResponseStationDTO;
+import com.kundan.railticket.dto.response.ResponseTicketDTO;
 import com.kundan.railticket.entity.Station;
 import com.kundan.railticket.entity.TrainStation;
+import com.kundan.railticket.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
@@ -15,7 +19,7 @@ import java.util.Map;
 public class StationController {
 
     @Autowired
-    StationRepository stationRepository;
+    StationService stationService;
 
     @Autowired
     TrainStationRepository trainStationRepository;
@@ -24,49 +28,33 @@ public class StationController {
     TrainRepository trainRepository;
 
     @GetMapping("/user/stations")
-   public List<Station> getAllStations()
+   public List<ResponseStationDTO> getAllStations()
     {
-        return stationRepository.findAll();
+        return stationService.getAllStation();
     }
     
     @PostMapping("/admin/stations")
-    public List<Station> saveAllStations(List<Station> stationList)
+    public String saveAllStations(List<RequestStationDTO> requestStationDTOS)
     {
-        for (Station station:stationList)
-        {
-            stationRepository.save(station);
-        }
-        return getAllStations();
+      return   stationService.save(requestStationDTOS);
     }
 
     @DeleteMapping("/admin/station/{id}")
-    public List<Station> deleteStation(@PathVariable long id)
+    public String deleteStation(@PathVariable long id)
     {
-        stationRepository.deleteById(id);
-        return getAllStations();
+       return stationService.deleteStationById(id);
     }
 
-    @PutMapping("/admin/stations")
-   public  List<Station> updateStation(@RequestBody List<Station> stationList)
+    @PutMapping("/admin/stations/{id}")
+   public  String updateStation(@PathVariable long id,@RequestBody RequestStationDTO requestStationDTO)
     {
-        for(Station station : stationList)
-        {
-            stationRepository.updateStationById(station.getStationId(),station.getName());
-        }
-        return getAllStations();
+            return stationService.updateStationById(id,requestStationDTO);
     }
 
 
     @GetMapping("/train-station/{trainNo}")
    public  Map<String,String> getAllStationOfTrainWithArrivalTime(@PathVariable int trainNo)
     {
-        Map<String,String> map=new HashMap<>();
-
-        List<TrainStation> trainStations=trainStationRepository.getTrainStationByTrain(trainRepository.getTrainsByTrainNo(trainNo));
-        for(TrainStation trainStation:trainStations)
-        {
-            map.put(trainStation.getArrivalTime().toString(),trainStation.getStations().getName());
-        }
-        return map;
+        return stationService.getAllStationOfTrainWithArrivalTime(trainNo);
     }
 }

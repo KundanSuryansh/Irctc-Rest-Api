@@ -1,27 +1,18 @@
 package com.kundan.railticket.dto.request;
 
 public class RequestStationDTO {
-    long stationId;
-    String stationName;
 
-    public RequestStationDTO(long stationId, String stationName) {
-        this.stationId = stationId;
-        this.stationName = stationName;
+    String name;
+
+    public String getName() {
+        return name;
     }
 
-    public long getStationId() {
-        return stationId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setStationId(long stationId) {
-        this.stationId = stationId;
-    }
-
-    public String getStationName() {
-        return stationName;
-    }
-
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
+    public RequestStationDTO(String name) {
+        this.name = name;
     }
 }

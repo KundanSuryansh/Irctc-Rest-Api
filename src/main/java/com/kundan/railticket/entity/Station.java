@@ -22,9 +22,8 @@ public class Station implements Serializable {
     private List<TrainStation> trainStationList;
 
     Station(){}
-    public Station(String name, List<TrainStation> trainStationList) {
+    public Station(String name) {
         this.name = name;
-        this.trainStationList = trainStationList;
     }
 
     public long getStationId() {
