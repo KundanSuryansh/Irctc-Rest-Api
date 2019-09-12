@@ -1,8 +1,11 @@
 package com.kundan.railticket.dto.request;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-public class RequestUserDTO {
+public class RequestUserDTO implements Serializable {
+
+    private static final long serialVersionUID = 5926468583005150707L;
 
     @NotNull
     private  String name;
